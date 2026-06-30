@@ -1,20 +1,26 @@
 workflows:
-  ios-release:
-    name: iOS Release
+  ios-release-no-shorebird:
+    name: IOS Release (No Shorebird)
 
     environment:
       flutter: stable
       xcode: latest
 
     scripts:
-      - name: Get dependencies
-        script: |
-          flutter pub get
+      - flutter pub get
+      - flutter clean
 
-      - name: Build IPA
-        script: |
-          flutter build ipa --release
+      # Build pour iPhone sans signature Apple
+      - flutter build ios --release --no-codesign
+
+      # Création du dossier Payload
+      - mkdir -p build/ios/iphoneos/Payload
+
+      # Copie de l'application
+      - cp -R build/ios/iphoneos/Runner.app build/ios/iphoneos/Payload/
+
+      # Création du fichier .ipa
+      - cd build/ios/iphoneos && zip -r Runner.ipa Payload
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/archive/*.xcarchive
+      - build/ios/iphoneos/Runner.ipa
