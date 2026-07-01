@@ -431,7 +431,7 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.98,
+              maxHeight: MediaQuery.of(context).size.height * 0.94,
             ),
             decoration: const BoxDecoration(
               color: Color(0xFFF3F3F3),
@@ -793,8 +793,8 @@ class _PageSuccesEnvoyerState extends State<PageSuccesEnvoyer> with SingleTicker
                 "L'envoi a réussi",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
 
@@ -816,17 +816,17 @@ class _PageSuccesEnvoyerState extends State<PageSuccesEnvoyer> with SingleTicker
                         padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
                         child: Text(
                           "Montant",
-                          style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold, fontSize: 13),
+                          style: TextStyle(color: Colors.grey.shade900, fontWeight: FontWeight.bold, fontSize: 13),
                         ),
                       ),
                       const SizedBox(height: 0),
                       Center(
                         child: Text(
                           "CHF ${widget.montant}",
-                          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w400),
+                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                         ),
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
                       
                       // Ligne de séparation avec encoche
                       SizedBox(
@@ -841,18 +841,18 @@ class _PageSuccesEnvoyerState extends State<PageSuccesEnvoyer> with SingleTicker
                         padding: const EdgeInsets.only(left: 16, top: 8, right: 16,),
                         child: Text(
                           "Bénéficiaire",
-                          style: TextStyle(color: Colors.grey.shade700, fontWeight: FontWeight.bold, fontSize: 13),
+                          style: TextStyle(color: Colors.grey.shade900, fontWeight: FontWeight.bold, fontSize: 13),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                         child: Row(
                           children: [
                             Container(
-                              width: 50,
-                              height: 50,
+                              width: 55,
+                              height: 55,
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
+                                color: Colors.grey.shade400,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -865,17 +865,30 @@ class _PageSuccesEnvoyerState extends State<PageSuccesEnvoyer> with SingleTicker
                             const SizedBox(width: 16),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  widget.nom,
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                Transform.translate(
+                                  offset: const Offset(0, -2),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        widget.nom,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Text(
+                                        widget.numero,
+                                        style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  widget.numero,
-                                  style: TextStyle(color: Colors.grey.shade500, fontSize: 14),
-                                ),
-                                const SizedBox(height: 20),
                               ],
                             ),
                           ],
@@ -1057,7 +1070,7 @@ class TicketSeparatorPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey.shade300
+      ..color = Colors.grey.shade400
       ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
