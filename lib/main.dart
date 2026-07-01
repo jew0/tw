@@ -40,7 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (context) => const PageEnvoyerArgent(),
+      builder: (context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          viewInsets: EdgeInsets.zero,
+        ),
+        child: const PageEnvoyerArgent(),
+      ),
     );
   }
 
@@ -384,16 +389,8 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey.shade100,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey.shade200),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Center(
         child: Text(
@@ -529,7 +526,19 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
                           child: const Text("Contacts", style: TextStyle(color: Color(0xFF666666), fontWeight: FontWeight.bold, fontSize: 13)),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 8,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
                           child: Column(
                             children: [
                               TextField(
@@ -550,16 +559,24 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
                                 onSubmitted: (_) => _messageFocus.requestFocus(),
                                 decoration: _buildInputDecoration("Prénom, nom"),
                               ),
+                              const SizedBox(height: 20),
+                              TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "Autoriser l'accès aux contacts",
+                                  style: TextStyle(
+                                    color: Color(0xFF62AA6E),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Center(
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text("Autoriser l'accès aux contacts", style: TextStyle(color: Color(0xFF62AA6E), fontWeight: FontWeight.w600, fontSize: 15)),
-                          ),
-                        ),
+                      ),
+
+                      const SizedBox(height: 10),
 
                         // SECTION : Message
                         Padding(
@@ -588,27 +605,43 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
                           child: Column(
                             children: [
-                              TextField(
-                                controller: _messageController,
-                                focusNode: _messageFocus,
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                                decoration: _buildInputDecoration("Ajouter un message"),
-                              ),
-                              const SizedBox(height: 14),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  _buildEmojiButton("🙏"),
-                                  _buildEmojiButton("😘"),
-                                  _buildEmojiButton("🥪"),
-                                  _buildEmojiButton("❤️"),
-                                  _buildEmojiButton("🍕"),
-                                  _buildEmojiButton("🎉"),
-                                ],
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                padding: const EdgeInsets.only(
+                                  top: 16,
+                                  bottom: 16,
+                                  left: 16,
+                                  right: 16,
+                                ),
+                                child: Column(
+                                  children: [
+                                    TextField(
+                                      controller: _messageController,
+                                      focusNode: _messageFocus,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.done,
+                                      decoration: _buildInputDecoration("Ajouter un message"),
+                                    ),
+                                    const SizedBox(height: 14),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        _buildEmojiButton("🙏"),
+                                        _buildEmojiButton("😘"),
+                                        _buildEmojiButton("🥪"),
+                                        _buildEmojiButton("❤️"),
+                                        _buildEmojiButton("🍕"),
+                                        _buildEmojiButton("🎉"),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(height: 18),
                               Container(
