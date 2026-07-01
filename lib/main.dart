@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isScrollControlled: true,
       backgroundColor: const Color(0xFFF3F3F3), // Fond global de la modal
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
       builder: (context) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             Text(
-                              "Migros M Aira pute",
+                              "Migros M Serrières",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
@@ -433,7 +433,7 @@ class _PageEnvoyerArgentState extends State<PageEnvoyerArgent> with SingleTicker
             decoration: const BoxDecoration(
               color: Color(0xFFF3F3F3),
               borderRadius: BorderRadius.vertical(
-                top: Radius.circular(24),
+                top: Radius.circular(32),
               ),
             ),
             child: Column(
